@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getWealthTax should return the wealth tax for 1.2m 1`] = `16564.075`;
+
+exports[`getWealthTax should return the wealth tax for 80K 1`] = `176.51399999999998`;
+
+exports[`getWealthTax should return the wealth tax for 100K 1`] = `294.19`;
+
+exports[`getWealthTax should return the wealth tax for 150K 1`] = `991.845`;
+
+exports[`getWealthTax should return the wealth tax for 200K 1`] = `1689.5000000000002`;
