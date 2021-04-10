@@ -1,6 +1,8 @@
 <template>
-  <header class="container py-3">
-    <h2>Simple Portfolio Comparator</h2>
+  <header class="bg-dark text-light text-center">
+    <div class="container py-3 mb-3">
+      <h4>Simple Portfolio Comparator</h4>
+    </div>
   </header>
 </template>
 
