@@ -1,7 +1,7 @@
 <template>
   <header class="bg-dark text-light text-center">
     <div class="container py-3 mb-3">
-      <h4>Simple Portfolio Comparator</h4>
+      <h4>Simple Portfolio Comparator for NL</h4>
     </div>
   </header>
 </template>
