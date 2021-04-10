@@ -1,4 +1,5 @@
 <template>
+  <AppHeader />
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
@@ -133,6 +134,7 @@ import { defineComponent, toRefs, provide } from 'vue';
 import BrokerDetails from './components/BrokerDetails.vue';
 import BrokerForm from './components/BrokerForm.vue';
 import PortfoliosTable from './components/PortfoliosTable.vue';
+import AppHeader from './components/AppHeader.vue';
 import { useState } from './composables/use-store';
 import { getWealthTax } from './composables/use-wealth-tax';
 import { App, Broker, Portfolio } from './types';
@@ -140,7 +142,7 @@ import { App, Broker, Portfolio } from './types';
 export default defineComponent({
   name: 'App',
 
-  components: { BrokerDetails, BrokerForm, PortfoliosTable },
+  components: { BrokerDetails, BrokerForm, PortfoliosTable, AppHeader },
 
   setup() {
     const state = useState();
