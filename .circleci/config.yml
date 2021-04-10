@@ -23,7 +23,9 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run test
-
+      - run:
+          name: Deploy
+          command: curl -X POST -d {} ${hook}
 workflows:
   orb-free-workflow:
     jobs:
