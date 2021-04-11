@@ -108,6 +108,19 @@
 
         <h3>Portfolio Settings</h3>
 
+        <p>
+          Morningstar is a great source for the security data. Here is an example for <a
+            href="https://www.morningstar.nl/nl/etf/snapshot/snapshot.aspx?id=0P0000YXJO"
+            target="_blank"
+          >VWRL</a>. You can also use <a
+            href="https://www.reddit.com/r/DutchFIRE/comments/flchg4/voorbeeld_all_world_index_portfolios_2020/"
+            target="_blank"
+          >this post</a> as a rough reference for tracking differences. Make sure you compare the same type of data for more accurate calculation. <a
+            href="https://www.justetf.com/en/news/etf/avoiding-etf-performance-pitfalls.html"
+            target="_blank"
+          >This post</a> explains what to look at.
+        </p>
+
         <div class="accordion">
           <BrokerDetails
             v-for="broker in brokers"
