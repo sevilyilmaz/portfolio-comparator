@@ -227,26 +227,26 @@ export default defineComponent({
       const {
         variableCost,
         fixedCost,
-        yearlyGrowth,
+        annualReturn,
       } = internalSecurities.value.reduce(
         (acc, curr) => {
           acc.variableCost +=
             ((curr.variableTransactionCost + curr.tertd) * curr.allocation) /
             100;
           acc.fixedCost += curr.fixedTransactionCost * 12; // monthly
-          acc.yearlyGrowth += curr.yearlyGrowth * (curr.allocation / 100);
+          acc.annualReturn += curr.annualReturn * (curr.allocation / 100);
 
           return acc;
         },
         {
           variableCost: 0,
           fixedCost: 0,
-          yearlyGrowth: 0,
+          annualReturn: 0,
         }
       );
 
       const costs = (amount * variableCost) / 100 + fixedCost;
-      const growth = (amount * yearlyGrowth) / 100;
+      const growth = (amount * annualReturn) / 100;
 
       return amount + growth - costs;
     }
@@ -307,7 +307,7 @@ export default defineComponent({
         name: '',
         tertd: 0,
         dividend: 0,
-        yearlyGrowth: 0,
+        annualReturn: 0,
         fixedTransactionCost: 0,
         variableTransactionCost: 0,
         exitCost: 0,

@@ -11,7 +11,7 @@ export interface App {
 export interface Security {
   id: string;
   name: string;
-  yearlyGrowth: number;
+  annualReturn: number;
   tertd: number;
   dividend?: number;
   fixedTransactionCost: number;

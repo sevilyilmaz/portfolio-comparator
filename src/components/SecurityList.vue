@@ -9,7 +9,7 @@
       <tr>
         <th>Security</th>
         <th>TER/TD (%)</th>
-        <th>Yearly growth (%)</th>
+        <th>Annual return (%)</th>
         <!-- <th>Dividend</th> -->
         <th>Fixed transaction cost</th>
         <th>Variable transaction cost (%)</th>
@@ -39,7 +39,7 @@
         </td>
         <td>
           <input
-            v-model.number="security.yearlyGrowth"
+            v-model.number="security.annualReturn"
             type="text"
             class="form-control"
           >
