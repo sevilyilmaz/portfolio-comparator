@@ -55,7 +55,6 @@
 import {
   computed,
   defineComponent,
-  inject,
   onUpdated,
   PropType,
   ref,
@@ -64,6 +63,7 @@ import {
 } from 'vue';
 import SecurityList from './SecurityList.vue';
 import { useId } from '../composables/use-id';
+import { getWealthTax } from '../composables/use-wealth-tax';
 import { Security } from '../types';
 type EmitOption =
   | 'portfolioUpdated'
@@ -106,6 +106,10 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+    fiscalStatus: {
+      type: Number,
+      required: true,
+    },
     securities: {
       type: Array as PropType<Security[]>,
       default: () => [],
@@ -130,17 +134,17 @@ export default defineComponent({
       deposit,
       initialDeposit,
       includeWealthTax,
+      fiscalStatus,
     } = toRefs(props);
 
     const active = ref(false);
-
-    const substractWealthTax = inject<Function>('substractWealthTax');
 
     const contentClasses = computed(() => ({
       'accordion-collapse': true,
       collapse: true,
       show: active.value,
     }));
+
     const headerButtonClasses = computed(() => ({
       'accordion-button': true,
       collapsed: !active.value,
@@ -251,6 +255,12 @@ export default defineComponent({
       return amount + growth - costs;
     }
 
+    function substractWealthTax(amount: number): number {
+      const amountPerPerson = amount / fiscalStatus.value;
+      const tax = getWealthTax(amountPerPerson) * fiscalStatus.value;
+      return amount - tax;
+    }
+
     const portfolioTable = computed(() => {
       const arr = [...Array(duration.value).keys()];
 
@@ -325,7 +335,6 @@ export default defineComponent({
       toggleActive,
       internalServiceFee,
       internalSecurities,
-      hasServiceFee,
       portfolioTable,
       addSecurity,
       removeBroker,

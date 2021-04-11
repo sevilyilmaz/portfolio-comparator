@@ -69,10 +69,10 @@
             <div class="form-check form-check-inline">
               <input
                 id="single"
-                v-model="fiscalStatus"
+                v-model.number="fiscalStatus"
+                :value="1"
                 class="form-check-input"
                 type="radio"
-                value="1"
               >
               <label
                 class="form-check-label"
@@ -85,10 +85,10 @@
             <div class="form-check form-check-inline">
               <input
                 id="couple"
-                v-model="fiscalStatus"
+                v-model.number="fiscalStatus"
+                :value="2"
                 class="form-check-input"
                 type="radio"
-                value="2"
               >
               <label
                 class="form-check-label"
@@ -133,6 +133,7 @@
             :duration="duration"
             :initial-deposit="initialDeposit"
             :include-wealth-tax="includeWealthTax"
+            :fiscal-status="fiscalStatus"
             @portfolio-updated="onPortfolioUpdate"
             @portfolio-created="onPortfolioCreated"
             @remove-broker="onBrokerRemove"
@@ -146,14 +147,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, provide } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 import BrokerDetails from './components/BrokerDetails.vue';
 import BrokerForm from './components/BrokerForm.vue';
 import PortfoliosTable from './components/PortfoliosTable.vue';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import { useState } from './composables/use-store';
-import { getWealthTax } from './composables/use-wealth-tax';
 import { App, Broker, Portfolio } from './types';
 
 export default defineComponent({
@@ -173,13 +173,6 @@ export default defineComponent({
     function addBroker(broker: Broker): number {
       return state.brokers.push(broker);
     }
-
-    function substractWealthTax(amount: number): number {
-      const amountPerPerson = amount / state.fiscalStatus;
-      const tax = getWealthTax(amountPerPerson) * state.fiscalStatus;
-      return amount - tax;
-    }
-    provide('substractWealthTax', substractWealthTax);
 
     function getPortfolioIndex(id: string) {
       return state.portfolios.findIndex((v) => v.id === id);
