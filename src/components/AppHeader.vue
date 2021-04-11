@@ -3,7 +3,7 @@
     <div class="container py-3 mb-3">
       <div class="row">
         <div class="col-9">
-          <h4>Simple Portfolio Comparator for NL</h4>
+          <h4>Simple Portfolio Comparator</h4>
         </div>
         <div class="col-3 text-end">
           <a
