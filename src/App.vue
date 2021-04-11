@@ -115,7 +115,7 @@
           >VWRL</a>. You can also use <a
             href="https://www.reddit.com/r/DutchFIRE/comments/flchg4/voorbeeld_all_world_index_portfolios_2020/"
             target="_blank"
-          >this post</a> as a rough reference for tracking differences. Make sure you compare the same type of data for more accurate calculation. <a
+          >this post</a> as a rough reference for tracking differences. Make sure you use same type of data for more accurate comparison. <a
             href="https://www.justetf.com/en/news/etf/avoiding-etf-performance-pitfalls.html"
             target="_blank"
           >This post</a> explains what to look at.
