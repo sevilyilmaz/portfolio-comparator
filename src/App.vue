@@ -109,7 +109,7 @@
         <h3>Portfolio Settings</h3>
 
         <p>
-          Morningstar is a great source for the security data. Here is an example for <a
+          Morningstar is a great source for security data. Here is an example for <a
             href="https://www.morningstar.nl/nl/etf/snapshot/snapshot.aspx?id=0P0000YXJO"
             target="_blank"
           >VWRL</a>. You can also use <a
