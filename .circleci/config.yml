@@ -60,20 +60,16 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Install netlify-cli
-          command: sudo npm install -g --silent netlify-cli
+          command: yarn add -D netlify-cli
       - run:
           name: Deploy to Netlify
-          command: netlify deploy --dir=./dist -p
+          command: $(yarn bin)/netlify deploy --dir=./dist -p
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - test:
-          filters:
-            branches:
-              ignore:
-                - gh-pages
+      - test
       - build:
           requires:
             - test
