@@ -1,7 +1,20 @@
 <template>
-  <header class="bg-dark text-light text-center">
+  <header class="bg-dark text-light">
     <div class="container py-3 mb-3">
-      <h4>Simple Portfolio Comparator for NL</h4>
+      <div class="row">
+        <div class="col-9">
+          <h4>Simple Portfolio Comparator for NL</h4>
+        </div>
+        <div class="col-3 text-end">
+          <a
+            href="https://github.com/sevilyilmaz/portfolio-comparator"
+            target="_blank"
+            class="btn btn-light text-decoration-none"
+          >
+            View on Github
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 </template>
