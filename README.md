@@ -1,4 +1,4 @@
-# Portfolio Comparator for the Netherlands
+# Portfolio Comparator
 
 ![CircleCI](https://img.shields.io/circleci/build/github/sevilyilmaz/portfolio-comparator/main?style=flat-square)
 
