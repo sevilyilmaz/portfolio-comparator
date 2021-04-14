@@ -44,12 +44,3 @@ export function getWealthTax(amount: number): number {
     }
   ).tax;
 }
-
-export function substractWealthTax(
-  amount: number,
-  fiscalStatus: number
-): number {
-  const amountPerPerson = amount / fiscalStatus;
-  const tax = getWealthTax(amountPerPerson) * fiscalStatus;
-  return amount - tax;
-}

@@ -63,9 +63,7 @@ import {
 } from 'vue';
 import SecurityList from './SecurityList.vue';
 import { useId } from '../composables/use-id';
-import { substractWealthTax } from '../composables/use-wealth-tax';
-import { substractPercentage } from '../composables/use-substract-percentage';
-import { substractServiceFee } from '../composables/use-service-fee';
+import { getWealthTax } from '../composables/use-wealth-tax';
 import { Security } from '../types';
 type EmitOption =
   | 'portfolioUpdated'
@@ -178,6 +176,48 @@ export default defineComponent({
       return internalServiceFee.value;
     });
 
+    function getServiceFees() {
+      let brackets = internalServiceFee.value.split(';');
+      if (brackets.length === 1) {
+        return Number(internalServiceFee.value);
+      }
+
+      return brackets
+        .reduce((acc, curr) => {
+          const [amount, fee] = curr.split(':');
+
+          acc.push({
+            amount: Number(amount),
+            fee: Number(fee),
+          });
+
+          return acc;
+        }, [] as { amount: number; fee: number }[])
+        .sort((a, b) => b.amount - a.amount); // in reverse order
+    }
+
+    function substractPercentage(amount: number, percentage: number) {
+      return amount - (amount * percentage) / 100;
+    }
+
+    function substractServiceFee(amount: number): number {
+      if (!hasServiceFee.value) {
+        return amount;
+      }
+
+      const serviceFee = getServiceFees();
+
+      if (Array.isArray(serviceFee)) {
+        const currentBracket = serviceFee.find(
+          (bracket) => amount > bracket.amount
+        ) || { fee: 0 };
+
+        return substractPercentage(amount, currentBracket.fee);
+      }
+
+      return substractPercentage(amount, serviceFee);
+    }
+
     function substractSecurityExitCost(amount: number): number {
       const exitCost = internalSecurities.value.reduce((acc, curr) => {
         acc += (curr.exitCost * curr.allocation) / 100;
@@ -215,8 +255,14 @@ export default defineComponent({
       return amount + growth - costs;
     }
 
+    function substractWealthTax(amount: number): number {
+      const amountPerPerson = amount / fiscalStatus.value;
+      const tax = getWealthTax(amountPerPerson) * fiscalStatus.value;
+      return amount - tax;
+    }
+
     const portfolioTable = computed(() => {
-      const arr = new Array(duration.value).fill(0).map((_, i) => i);
+      const arr = [...Array(duration.value).keys()];
 
       const accumulation = arr.reduce((acc, curr) => {
         let currentAccumulation = 0;
@@ -229,19 +275,13 @@ export default defineComponent({
         }
 
         if (hasServiceFee.value) {
-          currentAccumulation = substractServiceFee(
-            currentAccumulation,
-            internalServiceFee.value
-          );
+          currentAccumulation = substractServiceFee(currentAccumulation);
         }
 
         currentAccumulation = addSecurityValues(currentAccumulation);
 
         if (includeWealthTax.value && substractWealthTax) {
-          currentAccumulation = substractWealthTax(
-            currentAccumulation,
-            fiscalStatus.value
-          );
+          currentAccumulation = substractWealthTax(currentAccumulation);
         }
 
         acc.push(currentAccumulation);
