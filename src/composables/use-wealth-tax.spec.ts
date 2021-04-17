@@ -1,33 +1,26 @@
-import { getWealthTax } from './use-wealth-tax';
+import { getWealthTax, substractWealthTax } from './use-wealth-tax';
 
 describe('getWealthTax', () => {
-  it('should return the wealth tax for 40K', () => {
-    const amount = 40000;
-    expect(getWealthTax(amount)).toBe(0);
-  });
+  test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
+    'should return the wealth tax for [%s]',
+    (amount) => {
+      expect(getWealthTax(amount)).toMatchSnapshot();
+    }
+  );
+});
 
-  it('should return the wealth tax for 80K', () => {
-    const amount = 80000;
-    expect(getWealthTax(amount)).toMatchSnapshot();
-  });
+describe('substractWealthTax', () => {
+  test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
+    'should substract wealth tax from [%s] for single person',
+    (amount) => {
+      expect(substractWealthTax(amount, 1)).toMatchSnapshot();
+    }
+  );
 
-  it('should return the wealth tax for 100K', () => {
-    const amount = 100000;
-    expect(getWealthTax(amount)).toMatchSnapshot();
-  });
-
-  it('should return the wealth tax for 150K', () => {
-    const amount = 150000;
-    expect(getWealthTax(amount)).toMatchSnapshot();
-  });
-
-  it('should return the wealth tax for 200K', () => {
-    const amount = 200000;
-    expect(getWealthTax(amount)).toMatchSnapshot();
-  });
-
-  it('should return the wealth tax for 1.2m', () => {
-    const amount = 1200000;
-    expect(getWealthTax(amount)).toMatchSnapshot();
-  });
+  test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
+    'should substract wealth tax from [%s] for a couple (50%/50% split)',
+    (amount) => {
+      expect(substractWealthTax(amount, 2)).toMatchSnapshot();
+    }
+  );
 });

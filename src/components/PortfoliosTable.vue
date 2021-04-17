@@ -29,7 +29,7 @@
 <script lang="ts">
 import { defineComponent, computed, toRefs, PropType } from 'vue';
 import { Portfolio } from '../types';
-import { getDisplayValue } from '../composables/use-display-value';
+import { useDisplayValue } from '../composables/use-display-value';
 
 export default defineComponent({
   props: {
@@ -50,11 +50,11 @@ export default defineComponent({
             acc.values = curr.values.map((v, i) => {
               // Adds years to the first row. The last value is Exit
               const year = i <= curr.values.length - 2 ? i + 1 : 'Exit';
-              return [year, getDisplayValue(v)];
+              return [year, useDisplayValue(v)];
             });
           } else {
             acc.values = acc.values.map((v, i) => {
-              return [...v, getDisplayValue(curr.values[i])];
+              return [...v, useDisplayValue(curr.values[i])];
             });
           }
 
