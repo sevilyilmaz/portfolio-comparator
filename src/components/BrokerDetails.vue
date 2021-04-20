@@ -66,6 +66,10 @@ import { useId } from '../composables/use-id';
 import { substractWealthTax } from '../composables/use-wealth-tax';
 import { substractPercentage } from '../composables/use-substract-percentage';
 import { substractServiceFee } from '../composables/use-service-fee';
+import {
+  addSecurityValues,
+  substractSecurityExitCost,
+} from '../composables/use-securities';
 import { Security } from '../types';
 type EmitOption =
   | 'portfolioUpdated'
@@ -178,43 +182,6 @@ export default defineComponent({
       return internalServiceFee.value;
     });
 
-    function substractSecurityExitCost(amount: number): number {
-      const exitCost = internalSecurities.value.reduce((acc, curr) => {
-        acc += (curr.exitCost * curr.allocation) / 100;
-        return acc;
-      }, 0);
-
-      return substractPercentage(amount, exitCost);
-    }
-
-    function addSecurityValues(amount: number): number {
-      const {
-        variableCost,
-        fixedCost,
-        annualReturn,
-      } = internalSecurities.value.reduce(
-        (acc, curr) => {
-          acc.variableCost +=
-            ((curr.variableTransactionCost + curr.tertd) * curr.allocation) /
-            100;
-          acc.fixedCost += curr.fixedTransactionCost * 12; // monthly
-          acc.annualReturn += curr.annualReturn * (curr.allocation / 100);
-
-          return acc;
-        },
-        {
-          variableCost: 0,
-          fixedCost: 0,
-          annualReturn: 0,
-        }
-      );
-
-      const costs = (amount * variableCost) / 100 + fixedCost;
-      const growth = (amount * annualReturn) / 100;
-
-      return amount + growth - costs;
-    }
-
     const portfolioTable = computed(() => {
       const arr = new Array(duration.value).fill(0).map((_, i) => i);
 
@@ -235,9 +202,12 @@ export default defineComponent({
           );
         }
 
-        currentAccumulation = addSecurityValues(currentAccumulation);
+        currentAccumulation = addSecurityValues(
+          currentAccumulation,
+          internalSecurities.value
+        );
 
-        if (includeWealthTax.value && substractWealthTax) {
+        if (includeWealthTax.value) {
           currentAccumulation = substractWealthTax(
             currentAccumulation,
             fiscalStatus.value
@@ -250,7 +220,10 @@ export default defineComponent({
       }, [] as number[]);
 
       const lastItem = accumulation[accumulation.length - 1];
-      const exitValue = substractSecurityExitCost(lastItem);
+      const exitValue = substractSecurityExitCost(
+        lastItem,
+        internalSecurities.value
+      );
 
       accumulation.push(exitValue);
 
