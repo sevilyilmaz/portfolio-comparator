@@ -1,18 +1,28 @@
+import { mocked } from 'ts-jest/utils';
 import { mount, shallowMount } from '@vue/test-utils';
+import { useState } from '../composables/use-store';
 import BrokerDetails from './BrokerDetails.vue';
 
-export function createWrapper({ props = {}, shallow = true } = {}) {
+jest.mock('../composables/use-store');
+
+export function createWrapper({ props = {}, state = {}, shallow = true } = {}) {
+  mocked(useState, true).mockReturnValueOnce({
+    initialDeposit: 10000,
+    deposit: 1500,
+    duration: 20,
+    includeWealthTax: true,
+    fiscalStatus: 1,
+    portfolios: [],
+    brokers: [],
+    ...state,
+  });
+
   const _mount = shallow ? shallowMount : mount;
 
   return _mount(BrokerDetails, {
     props: {
       id: 'test-id',
       name: 'Test',
-      deposit: 1500,
-      initialDeposit: 10000,
-      duration: 20,
-      includeWealthTax: true,
-      fiscalStatus: 1,
       serviceFee: '0',
       ...props,
     },
@@ -29,7 +39,7 @@ describe('BrokerDetails', () => {
   describe('portfolioTable', () => {
     it('should show accumulated values without any fees', () => {
       const wrapper = createWrapper({
-        props: {
+        state: {
           includeWealthTax: false,
         },
       });
@@ -45,7 +55,7 @@ describe('BrokerDetails', () => {
 
     it('should show accumulated values with wealth tax for a couple', () => {
       const wrapper = createWrapper({
-        props: {
+        state: {
           fiscalStatus: 2,
         },
       });
@@ -56,8 +66,10 @@ describe('BrokerDetails', () => {
     it('should show accumulated values with service fees', () => {
       const wrapper = createWrapper({
         props: {
-          includeWealthTax: false,
           serviceFee: '0.1',
+        },
+        state: {
+          includeWealthTax: false,
         },
       });
 
@@ -67,9 +79,11 @@ describe('BrokerDetails', () => {
     it('should show accumulated values with service fees', () => {
       const wrapper = createWrapper({
         props: {
+          serviceFee: '0:0.2;100000:0.12;400000:0.06',
+        },
+        state: {
           includeWealthTax: false,
           deposit: 25000,
-          serviceFee: '0:0.2;100000:0.12;400000:0.06',
         },
       });
 

@@ -63,6 +63,7 @@ import {
 } from 'vue';
 import SecurityList from './SecurityList.vue';
 import { useId } from '../composables/use-id';
+import { useState } from '../composables/use-store';
 import { substractWealthTax } from '../composables/use-wealth-tax';
 import { substractPercentage } from '../composables/use-substract-percentage';
 import { substractServiceFee } from '../composables/use-service-fee';
@@ -96,26 +97,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    deposit: {
-      type: Number,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-    initialDeposit: {
-      type: Number,
-      required: true,
-    },
-    includeWealthTax: {
-      type: Boolean,
-      required: true,
-    },
-    fiscalStatus: {
-      type: Number,
-      required: true,
-    },
     securities: {
       type: Array as PropType<Security[]>,
       default: () => [],
@@ -131,18 +112,7 @@ export default defineComponent({
   ],
 
   setup(props, { emit }: SetupContext<EmitOption[]>) {
-    const {
-      id,
-      name,
-      serviceFee,
-      securities,
-      duration,
-      deposit,
-      initialDeposit,
-      includeWealthTax,
-      fiscalStatus,
-    } = toRefs(props);
-
+    const state = useState();
     const active = ref(false);
 
     const contentClasses = computed(() => ({
@@ -162,7 +132,7 @@ export default defineComponent({
 
     const internalServiceFee = computed<string>({
       get() {
-        return serviceFee.value;
+        return props.serviceFee;
       },
       set(value) {
         emit('update:serviceFee', value);
@@ -171,7 +141,7 @@ export default defineComponent({
 
     const internalSecurities = computed<Security[]>({
       get() {
-        return securities.value;
+        return props.securities;
       },
       set(value) {
         emit('update:securities', value);
@@ -183,14 +153,14 @@ export default defineComponent({
     });
 
     const portfolioTable = computed(() => {
-      const arr = new Array(duration.value).fill(0).map((_, i) => i);
+      const arr = new Array(state.duration).fill(0).map((_, i) => i);
 
       const accumulation = arr.reduce((acc, curr) => {
         let currentAccumulation = 0;
-        let yearlyDeposit = deposit.value * 12;
+        let yearlyDeposit = state.deposit * 12;
 
         if (curr === 0) {
-          currentAccumulation = initialDeposit.value + yearlyDeposit;
+          currentAccumulation = state.initialDeposit + yearlyDeposit;
         } else {
           currentAccumulation = yearlyDeposit + acc[curr - 1];
         }
@@ -207,10 +177,10 @@ export default defineComponent({
           internalSecurities.value
         );
 
-        if (includeWealthTax.value) {
+        if (state.includeWealthTax) {
           currentAccumulation = substractWealthTax(
             currentAccumulation,
-            fiscalStatus.value
+            state.fiscalStatus
           );
         }
 
@@ -231,15 +201,15 @@ export default defineComponent({
     });
 
     emit('portfolioCreated', {
-      id: id.value,
-      name: name.value,
+      id: props.id,
+      name: props.name,
       values: portfolioTable,
     });
 
     onUpdated(() => {
       emit('portfolioUpdated', {
-        id: id.value,
-        name: name.value,
+        id: props.id,
+        name: props.name,
         values: portfolioTable,
       });
     });
@@ -259,7 +229,7 @@ export default defineComponent({
     }
 
     function removeBroker() {
-      emit('removeBroker', id.value);
+      emit('removeBroker', props.id);
     }
 
     return {
