@@ -20,7 +20,7 @@ export const createState = (): App => {
           {
             id: useId(),
             name: 'VWRL',
-            tertd: 0.53,
+            tertd: 0.56,
             dividend: 0,
             annualReturn: 6.8,
             fixedTransactionCost: 0,
@@ -44,7 +44,7 @@ export const createState = (): App => {
             fixedTransactionCost: 0,
             variableTransactionCost: 0,
             exitCost: 0.1,
-            allocation: 86,
+            allocation: 87,
           },
           {
             id: useId(),
@@ -55,7 +55,7 @@ export const createState = (): App => {
             fixedTransactionCost: 0,
             variableTransactionCost: 0,
             exitCost: 0.2,
-            allocation: 14,
+            allocation: 13,
           },
         ],
       },
