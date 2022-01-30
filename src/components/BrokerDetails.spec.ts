@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils';
 import { mount, shallowMount } from '@vue/test-utils';
 import { useState } from '../composables/use-store';
 import BrokerDetails from './BrokerDetails.vue';
@@ -6,7 +5,7 @@ import BrokerDetails from './BrokerDetails.vue';
 jest.mock('../composables/use-store');
 
 export function createWrapper({ props = {}, state = {}, shallow = true } = {}) {
-  mocked(useState, true).mockReturnValueOnce({
+  jest.mocked(useState, true).mockReturnValueOnce({
     initialDeposit: 10000,
     deposit: 1500,
     duration: 20,
