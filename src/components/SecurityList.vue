@@ -2,9 +2,7 @@
   <h4>Securities</h4>
   <p>Change the values in the table to adjust your portfolio</p>
 
-  <table
-    class="table table-hover"
-  >
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Security</th>
@@ -83,7 +81,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click="removeSecurity(index)"
+            @click="removeSecurity(Number(index))"
           >
             Remove
           </button>
