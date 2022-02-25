@@ -1,17 +1,17 @@
-// https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/vermogen_en_aanmerkelijk_belang/vermogen/belasting_betalen_over_uw_vermogen/grondslag_sparen_en_beleggen/berekening-2021/
+// https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/vermogen_en_aanmerkelijk_belang/vermogen/belasting_betalen_over_uw_vermogen/grondslag_sparen_en_beleggen/berekening-2022/
 const wealthTax = 0.31;
 const wealthTaxBrackets = [
   {
-    amount: 50000,
-    fee: 1.898 * wealthTax,
+    amount: 50650,
+    fee: 1.818 * wealthTax,
   },
   {
-    amount: 100000,
-    fee: 4.501 * wealthTax,
+    amount: 101300,
+    fee: 4.366 * wealthTax,
   },
   {
-    amount: 950000,
-    fee: 5.69 * wealthTax,
+    amount: 962350,
+    fee: 5.53 * wealthTax,
   },
 ];
 
