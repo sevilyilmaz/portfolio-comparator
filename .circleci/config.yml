@@ -26,7 +26,7 @@ version: 2.1
 
 jobs:
   test:
-    executor: node
+    executor: node/default
     steps:
       - checkout
       - <<: *restore_cache
@@ -37,7 +37,7 @@ jobs:
           command: yarn test
 
   build:
-    executor: node
+    executor: node/default
     steps:
       - checkout
       - <<: *restore_cache
@@ -51,7 +51,7 @@ jobs:
             - dist
 
   deploy:
-    executor: node
+    executor: node/default
     steps:
       - checkout
       - attach_workspace:
