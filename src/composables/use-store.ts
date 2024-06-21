@@ -1,6 +1,6 @@
 import { inject, provide, reactive } from 'vue';
 import { useId } from './use-id';
-import { App } from '../types';
+import type { App } from '../types';
 
 export const stateSymbol = Symbol('state');
 export const createState = (): App => {

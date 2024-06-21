@@ -5,25 +5,17 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="mb-3">
-          <label
-            for="deposit"
-            class="form-label"
-          >
-            Monthly Deposit
-          </label>
+          <label for="deposit" class="form-label"> Monthly Deposit </label>
           <input
             id="deposit"
             v-model.number="deposit"
             type="text"
             class="form-control"
-          >
+          />
         </div>
 
         <div class="mb-3">
-          <label
-            for="initial-deposit"
-            class="form-label"
-          >
+          <label for="initial-deposit" class="form-label">
             Initial Deposit
           </label>
           <input
@@ -31,22 +23,17 @@
             v-model.number="initialDeposit"
             type="text"
             class="form-control"
-          >
+          />
         </div>
 
         <div class="mb-3">
-          <label
-            for="duration"
-            class="form-label"
-          >
-            Duration (years)
-          </label>
+          <label for="duration" class="form-label"> Duration (years) </label>
           <input
             id="duration"
             v-model.number="duration"
             type="text"
             class="form-control"
-          >
+          />
         </div>
 
         <div class="mb-3">
@@ -56,11 +43,8 @@
               v-model="includeWealthTax"
               type="checkbox"
               class="form-check-input"
-            >
-            <label
-              class="form-check-label"
-              for="include-wealth-tax"
-            >
+            />
+            <label class="form-check-label" for="include-wealth-tax">
               Include wealth tax
             </label>
           </div>
@@ -73,13 +57,8 @@
                 :value="1"
                 class="form-check-input"
                 type="radio"
-              >
-              <label
-                class="form-check-label"
-                for="single"
-              >
-                Single
-              </label>
+              />
+              <label class="form-check-label" for="single"> Single </label>
             </div>
 
             <div class="form-check form-check-inline">
@@ -89,12 +68,12 @@
                 :value="2"
                 class="form-check-input"
                 type="radio"
-              >
-              <label
-                class="form-check-label"
-                for="couple"
-              >
-                Couple <span title="Assumes 50%/50% split between fiscal partner">(?)</span>
+              />
+              <label class="form-check-label" for="couple">
+                Couple
+                <span title="Assumes 50%/50% split between fiscal partner"
+                  >(?)</span
+                >
               </label>
             </div>
           </template>
@@ -109,16 +88,26 @@
         <h3>Portfolio Settings</h3>
 
         <p>
-          Morningstar is a great source for security data. Here is an example for <a
+          Morningstar is a great source for security data. Here is an example
+          for
+          <a
             href="https://www.morningstar.nl/nl/etf/snapshot/snapshot.aspx?id=0P0000YXJO"
             target="_blank"
-          >VWRL</a>. You can also use <a
+            >VWRL</a
+          >. You can also use
+          <a
             href="https://www.reddit.com/r/DutchFIRE/comments/flchg4/voorbeeld_all_world_index_portfolios_2020/"
             target="_blank"
-          >this post</a> as a rough reference for tracking differences. Make sure you use same type of data for more accurate comparison. <a
+            >this post</a
+          >
+          as a rough reference for tracking differences. Make sure you use same
+          type of data for more accurate comparison.
+          <a
             href="https://www.justetf.com/en/news/etf/avoiding-etf-performance-pitfalls.html"
             target="_blank"
-          >This post</a> explains what to look at.
+            >This post</a
+          >
+          explains what to look at.
         </p>
 
         <div class="accordion">
@@ -149,7 +138,7 @@ import PortfoliosTable from './components/PortfoliosTable.vue';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import { useState } from './composables/use-store';
-import { App, Broker, Portfolio } from './types';
+import type { App, Broker, Portfolio } from './types';
 
 export default defineComponent({
   name: 'App',

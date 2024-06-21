@@ -17,30 +17,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="(security, index) in securities"
-        :key="security.id"
-      >
+      <tr v-for="(security, index) in securities" :key="security.id">
         <td>
-          <input
-            v-model="security.name"
-            type="text"
-            class="form-control"
-          >
+          <input v-model="security.name" type="text" class="form-control" />
         </td>
         <td>
           <input
             v-model.number="security.tertd"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <td>
           <input
             v-model.number="security.annualReturn"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <!-- <td>
           <input
@@ -54,28 +47,28 @@
             v-model.number="security.fixedTransactionCost"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <td>
           <input
             v-model.number="security.variableTransactionCost"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <td>
           <input
             v-model.number="security.exitCost"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <td>
           <input
             v-model.number="security.allocation"
             type="text"
             class="form-control"
-          >
+          />
         </td>
         <td>
           <button
@@ -92,8 +85,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { Security } from '../types';
+import { defineComponent, type PropType, toRefs } from 'vue';
+import type { Security } from '../types';
 
 export default defineComponent({
   props: {

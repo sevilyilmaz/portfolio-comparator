@@ -2,10 +2,7 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th
-          v-for="title in portfolioTable.titles"
-          :key="title"
-        >
+        <th v-for="title in portfolioTable.titles" :key="title">
           {{ title }}
         </th>
       </tr>
@@ -15,10 +12,7 @@
         v-for="(values, index) in portfolioTable.values"
         :key="`year-row-${index}`"
       >
-        <td
-          v-for="value in values"
-          :key="`column-${value}`"
-        >
+        <td v-for="value in values" :key="`column-${value}`">
           {{ value }}
         </td>
       </tr>
@@ -27,8 +21,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, toRefs, PropType } from 'vue';
-import { Portfolio } from '../types';
+import { defineComponent, computed, toRefs, type PropType } from 'vue';
+import type { Portfolio } from '../types';
 import { useDisplayValue } from '../composables/use-display-value';
 
 export default defineComponent({

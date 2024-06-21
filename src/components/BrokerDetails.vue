@@ -1,13 +1,7 @@
 <template>
   <div class="accordion-item">
-    <h2
-      class="accordion-header"
-    >
-      <button
-        :class="headerButtonClasses"
-        type="button"
-        @click="toggleActive"
-      >
+    <h2 class="accordion-header">
+      <button :class="headerButtonClasses" type="button" @click="toggleActive">
         {{ name }}
       </button>
     </h2>
@@ -21,7 +15,7 @@
               v-model="internalServiceFee"
               type="text"
               class="form-control"
-            >
+            />
           </div>
 
           <div class="col-sm-4 text-end">
@@ -30,7 +24,7 @@
               class="btn btn-danger"
               value="Remove Broker"
               @click="removeBroker"
-            >
+            />
           </div>
         </div>
 
@@ -39,11 +33,7 @@
           :securities="internalSecurities"
         />
 
-        <button
-          type="submit"
-          class="btn btn-primary"
-          @click="addSecurity"
-        >
+        <button type="submit" class="btn btn-primary" @click="addSecurity">
           Add Security
         </button>
       </div>
@@ -56,22 +46,20 @@ import {
   computed,
   defineComponent,
   onUpdated,
-  PropType,
   ref,
-  SetupContext,
-  toRefs,
+  type PropType,
+  type SetupContext,
 } from 'vue';
 import SecurityList from './SecurityList.vue';
 import { useId } from '../composables/use-id';
 import { useState } from '../composables/use-store';
 import { substractWealthTax } from '../composables/use-wealth-tax';
-import { substractPercentage } from '../composables/use-substract-percentage';
 import { substractServiceFee } from '../composables/use-service-fee';
 import {
   addSecurityValues,
   substractSecurityExitCost,
 } from '../composables/use-securities';
-import { Security } from '../types';
+import type { Security } from '../types';
 type EmitOption =
   | 'portfolioUpdated'
   | 'portfolioCreated'
