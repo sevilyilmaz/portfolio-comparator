@@ -2,30 +2,27 @@
   "name": "portfolio-comparator",
   "version": "0.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "test": "jest"
-  },
-  "dependencies": {
-    "vue": "3.3.4"
+    "test": "vitest"
   },
   "devDependencies": {
-    "@babel/core": "7.22.6",
-    "@types/jest": "^27.4.0",
     "@typescript-eslint/parser": "6.21.0",
-    "@vitejs/plugin-vue": "4.6.2",
+    "@vitejs/plugin-vue": "5.0.5",
     "@vue/test-utils": "2.4.0",
-    "@vue/vue3-jest": "27.0.0",
-    "babel-jest": "27.5.1",
+    "@vue/tsconfig": "0.5.1",
     "eslint": "8.57.0",
+    "eslint-config-prettier": "8.10.0",
     "eslint-plugin-vue": "8.7.1",
-    "jest": "27.5.1",
-    "ts-jest": "27.1.5",
-    "typescript": "4.9.5",
-    "vite": "4.5.3",
-    "vue-tsc": "1.8.3"
+    "jsdom": "24.1.0",
+    "typescript": "5.3.2",
+    "vite": "5.3.1",
+    "vitest": "1.6.0",
+    "vue": "3.4.29",
+    "vue-tsc": "2.0.21"
   },
   "prettier": {
     "singleQuote": true

@@ -1,11 +1,12 @@
+import { describe, it, expect, vi } from 'vitest';
 import { mount, shallowMount } from '@vue/test-utils';
 import { useState } from '../composables/use-store';
 import BrokerDetails from './BrokerDetails.vue';
 
-jest.mock('../composables/use-store');
+vi.mock('../composables/use-store');
 
 export function createWrapper({ props = {}, state = {}, shallow = true } = {}) {
-  jest.mocked(useState, true).mockReturnValueOnce({
+  vi.mocked(useState, true).mockReturnValueOnce({
     initialDeposit: 10000,
     deposit: 1500,
     duration: 20,

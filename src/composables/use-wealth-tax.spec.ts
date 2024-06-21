@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import { getWealthTax, substractWealthTax } from './use-wealth-tax';
 
 describe('getWealthTax', () => {

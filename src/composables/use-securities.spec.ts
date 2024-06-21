@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { substractSecurityExitCost, addSecurityValues } from './use-securities';
 
 describe('substractSecurityExitCost', () => {

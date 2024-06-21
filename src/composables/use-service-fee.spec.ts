@@ -1,3 +1,4 @@
+import { describe, it, expect, test } from 'vitest';
 import { getServiceFees, substractServiceFee } from './use-service-fee';
 
 describe('getServiceFees', () => {

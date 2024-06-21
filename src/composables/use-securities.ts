@@ -1,4 +1,4 @@
-import { Security } from '../types';
+import type { Security } from '../types';
 import { substractPercentage } from './use-substract-percentage';
 
 export function substractSecurityExitCost(
