@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+    groups:
+      express:
+        patterns:
+          - 'express'
+          - '@types/express'
+      ejs:
+        patterns:
+          - 'ejs'
+          - '@types/ejs'
