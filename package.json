@@ -15,7 +15,7 @@
     "@vue/test-utils": "2.4.0",
     "@vue/tsconfig": "0.5.1",
     "eslint": "8.57.0",
-    "eslint-config-prettier": "8.10.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-vue": "9.26.0",
     "jsdom": "24.1.0",
     "typescript": "5.5.2",
