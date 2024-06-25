@@ -29,15 +29,12 @@
   // ===
   // JS(ON)
   // ===
-  "jest.autoEnable": false,
-  "jest.enableCodeLens": false,
   "javascript.format.enable": false,
   "json.format.enable": false,
   // ===
   // CSS
   // ===
   "css.validate": false,
-  "vetur.validation.style": false,
   // ===
   // MARKDOWN
   // ===
@@ -47,11 +44,7 @@
     "files.trimTrailingWhitespace": false
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
-  "jest.enableSnapshotUpdateMessages": false,
-  "vetur.experimental.templateInterpolationService": true,
-  "vetur.validation.templateProps": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "volar.tsPlugin": true
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
