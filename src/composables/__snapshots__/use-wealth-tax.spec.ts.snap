@@ -4,15 +4,19 @@ exports[`getWealthTax > should return the wealth tax for [28000] 1`] = `0`;
 
 exports[`getWealthTax > should return the wealth tax for [50000] 1`] = `0`;
 
-exports[`getWealthTax > should return the wealth tax for [80000] 1`] = `165.41073`;
+exports[`getWealthTax > should return the wealth tax for [80000] 1`] = `500.1119999999999`;
 
-exports[`getWealthTax > should return the wealth tax for [100000] 1`] = `278.12673`;
+exports[`getWealthTax > should return the wealth tax for [100000] 1`] = `934.9919999999998`;
 
-exports[`getWealthTax > should return the wealth tax for [120000] 1`] = `538.5502899999999`;
+exports[`getWealthTax > should return the wealth tax for [120000] 1`] = `1369.872`;
 
-exports[`getWealthTax > should return the wealth tax for [950000] 1`] = `11772.26829`;
+exports[`getWealthTax > should return the wealth tax for [150000] 1`] = `2022.1919999999998`;
 
-exports[`getWealthTax > should return the wealth tax for [1200000] 1`] = `16013.45455`;
+exports[`getWealthTax > should return the wealth tax for [200000] 1`] = `3109.3919999999994`;
+
+exports[`getWealthTax > should return the wealth tax for [950000] 1`] = `19417.392`;
+
+exports[`getWealthTax > should return the wealth tax for [1200000] 1`] = `24853.392`;
 
 exports[`substractWealthTax > should substract wealth tax from [28000] for a couple (50%/50% split) 1`] = `28000`;
 
@@ -24,20 +28,20 @@ exports[`substractWealthTax > should substract wealth tax from [50000] for singl
 
 exports[`substractWealthTax > should substract wealth tax from [80000] for a couple (50%/50% split) 1`] = `80000`;
 
-exports[`substractWealthTax > should substract wealth tax from [80000] for single person 1`] = `79834.58927`;
+exports[`substractWealthTax > should substract wealth tax from [80000] for single person 1`] = `79499.888`;
 
 exports[`substractWealthTax > should substract wealth tax from [100000] for a couple (50%/50% split) 1`] = `100000`;
 
-exports[`substractWealthTax > should substract wealth tax from [100000] for single person 1`] = `99721.87327`;
+exports[`substractWealthTax > should substract wealth tax from [100000] for single person 1`] = `99065.008`;
 
-exports[`substractWealthTax > should substract wealth tax from [120000] for a couple (50%/50% split) 1`] = `119894.61054`;
+exports[`substractWealthTax > should substract wealth tax from [120000] for a couple (50%/50% split) 1`] = `119869.536`;
 
-exports[`substractWealthTax > should substract wealth tax from [120000] for single person 1`] = `119461.44971`;
+exports[`substractWealthTax > should substract wealth tax from [120000] for single person 1`] = `118630.128`;
 
-exports[`substractWealthTax > should substract wealth tax from [950000] for a couple (50%/50% split) 1`] = `939313.33342`;
+exports[`substractWealthTax > should substract wealth tax from [950000] for a couple (50%/50% split) 1`] = `931822.016`;
 
-exports[`substractWealthTax > should substract wealth tax from [950000] for single person 1`] = `938227.73171`;
+exports[`substractWealthTax > should substract wealth tax from [950000] for single person 1`] = `930582.608`;
 
-exports[`substractWealthTax > should substract wealth tax from [1200000] for a couple (50%/50% split) 1`] = `1185929.68342`;
+exports[`substractWealthTax > should substract wealth tax from [1200000] for a couple (50%/50% split) 1`] = `1176386.016`;
 
-exports[`substractWealthTax > should substract wealth tax from [1200000] for single person 1`] = `1183986.54545`;
+exports[`substractWealthTax > should substract wealth tax from [1200000] for single person 1`] = `1175146.608`;
