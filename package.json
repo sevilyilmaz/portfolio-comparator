@@ -22,7 +22,7 @@
     "vite": "5.3.4",
     "vitest": "2.0.3",
     "vue": "3.4.33",
-    "vue-tsc": "2.0.26"
+    "vue-tsc": "2.0.29"
   },
   "prettier": {
     "singleQuote": true
