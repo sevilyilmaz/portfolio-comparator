@@ -11,7 +11,7 @@ describe('getWealthTax', () => {
 
 describe('subtractWealthTax', () => {
   test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
-    'should substract wealth tax from [%s] for single person',
+    'should subtract wealth tax from [%s] for single person',
     (amount) => {
       expect(subtractWealthTax(amount, 1)).toMatchSnapshot();
     }
