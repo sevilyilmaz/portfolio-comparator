@@ -1,42 +1,42 @@
 import { describe, it, expect, test } from 'vitest';
-import { getServiceFees, substractServiceFee } from './use-service-fee';
+import { getServiceFeeTiers, subtractServiceFee } from './use-service-fee';
 
 describe('getServiceFees', () => {
   it('should return the service fee as a number from a single value', () => {
-    expect(getServiceFees('0.1')).toBe(0.1);
+    expect(getServiceFeeTiers('0.1')).toBe(0.1);
   });
 
   it('should return the service fees from a tiered value', () => {
-    expect(getServiceFees('0:0.2;100000:0.12;400000:0.06')).toEqual([
+    expect(getServiceFeeTiers('0:0.2;100000:0.12;400000:0.06')).toEqual([
       {
-        amount: 400000,
-        fee: 0.06,
+        threshold: 0,
+        rate: 0.2,
       },
       {
-        amount: 100000,
-        fee: 0.12,
+        threshold: 100000,
+        rate: 0.12,
       },
       {
-        amount: 0,
-        fee: 0.2,
+        threshold: 400000,
+        rate: 0.06,
       },
     ]);
   });
 });
 
-describe('substractServiceFee', () => {
-  it('should return a fee substracted amount for a single value fee', () => {
-    expect(substractServiceFee(10000, '0.2')).toBe(9980);
+describe('subtractServiceFee', () => {
+  it('should return a fee subtracted amount for a single value fee', () => {
+    expect(subtractServiceFee(10000, '0.2')).toBe(9980);
   });
 
   test.each([
     [50000, 49900],
-    [150000, 149820],
-    [450000, 449730],
+    [150000, 149740],
+    [450000, 449410],
   ])(
-    'should return a fee substracted amount for [%s] for a tiered fee',
+    'should return a fee subtracted amount for [%s] for a tiered fee',
     (input, expected) => {
-      expect(substractServiceFee(input, '0:0.2;100000:0.12;400000:0.06')).toBe(
+      expect(subtractServiceFee(input, '0:0.2;100000:0.12;400000:0.06')).toBe(
         expected
       );
     }

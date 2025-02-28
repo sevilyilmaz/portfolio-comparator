@@ -13,7 +13,7 @@ export function getWealthTax(amount: number): number {
   return fictitiusGain * wealthTax;
 }
 
-export function substractWealthTax(
+export function subtractWealthTax(
   amount: number,
   fiscalStatus: number
 ): number {

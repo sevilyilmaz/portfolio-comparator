@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { getWealthTax, substractWealthTax } from './use-wealth-tax';
+import { getWealthTax, subtractWealthTax } from './use-wealth-tax';
 
 describe('getWealthTax', () => {
   test.each([
@@ -9,18 +9,18 @@ describe('getWealthTax', () => {
   });
 });
 
-describe('substractWealthTax', () => {
+describe('subtractWealthTax', () => {
   test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
     'should substract wealth tax from [%s] for single person',
     (amount) => {
-      expect(substractWealthTax(amount, 1)).toMatchSnapshot();
+      expect(subtractWealthTax(amount, 1)).toMatchSnapshot();
     }
   );
 
   test.each([28000, 50000, 80000, 100000, 120000, 950000, 1200000])(
-    'should substract wealth tax from [%s] for a couple (50%/50% split)',
+    'should subtract wealth tax from [%s] for a couple (50%/50% split)',
     (amount) => {
-      expect(substractWealthTax(amount, 2)).toMatchSnapshot();
+      expect(subtractWealthTax(amount, 2)).toMatchSnapshot();
     }
   );
 });

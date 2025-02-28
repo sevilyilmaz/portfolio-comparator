@@ -1,43 +1,66 @@
-import { substractPercentage } from './use-substract-percentage';
-
-type FeeBracket = {
-  amount: number;
-  fee: number;
+type FeeTiers = {
+  threshold: number;
+  rate: number;
 };
 
-export function getServiceFees(value: string): FeeBracket[] | number {
+export function getServiceFeeTiers(value: string): FeeTiers[] | number {
   let brackets = value.split(';');
   if (brackets.length === 1) {
     return Number(value);
   }
 
-  return brackets
-    .reduce((acc, curr) => {
-      const [amount, fee] = curr.split(':');
+  return brackets.reduce((acc, curr) => {
+    const [threshold, rate] = curr.split(':');
 
-      acc.push({
-        amount: Number(amount),
-        fee: Number(fee),
-      });
+    acc.push({
+      threshold: Number(threshold),
+      rate: Number(rate),
+    });
 
-      return acc;
-    }, [] as FeeBracket[])
-    .sort((a, b) => b.amount - a.amount); // in reverse order
+    return acc;
+  }, [] as FeeTiers[]);
 }
 
-export function substractServiceFee(
+function calculateBrokerFees(
+  investmentAmount: number,
+  serviceFeeTiers: FeeTiers[] | number
+) {
+  if (Array.isArray(serviceFeeTiers)) {
+    return serviceFeeTiers.reduce(
+      (acc, curr, idx, arr) => {
+        const next = arr[idx + 1] ?? null;
+        let val = 0;
+
+        if (next) {
+          val =
+            investmentAmount <= next.threshold
+              ? acc.remainder
+              : next.threshold - curr.threshold;
+        } else {
+          val = acc.remainder;
+        }
+
+        acc.remainder -= val;
+        acc.fee += val * (curr.rate / 100);
+
+        return acc;
+      },
+      {
+        fee: 0,
+        remainder: investmentAmount,
+      }
+    ).fee;
+  }
+
+  return (investmentAmount * serviceFeeTiers) / 100;
+}
+
+export function subtractServiceFee(
   amount: number,
   serviceFeeString: string
 ): number {
-  const serviceFee = getServiceFees(serviceFeeString);
+  const serviceFeeTiers = getServiceFeeTiers(serviceFeeString);
+  const totalServiceFee = calculateBrokerFees(amount, serviceFeeTiers);
 
-  if (Array.isArray(serviceFee)) {
-    const currentBracket = serviceFee.find(
-      (bracket) => amount > bracket.amount
-    ) || { fee: 0 };
-
-    return substractPercentage(amount, currentBracket.fee);
-  }
-
-  return substractPercentage(amount, serviceFee);
+  return amount - totalServiceFee;
 }

@@ -1,7 +1,7 @@
 import type { Security } from '../types';
-import { substractPercentage } from './use-substract-percentage';
+import { subtractPercentage } from './use-subtract-percentage';
 
-export function substractSecurityExitCost(
+export function subtractSecurityExitCost(
   amount: number,
   securities: Security[]
 ): number {
@@ -10,7 +10,7 @@ export function substractSecurityExitCost(
     return acc;
   }, 0);
 
-  return substractPercentage(amount, exitCost);
+  return subtractPercentage(amount, exitCost);
 }
 
 export function addSecurityValues(

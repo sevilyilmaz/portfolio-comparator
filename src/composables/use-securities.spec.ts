@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { substractSecurityExitCost, addSecurityValues } from './use-securities';
+import { subtractSecurityExitCost, addSecurityValues } from './use-securities';
 
 describe('substractSecurityExitCost', () => {
   it('should substract exit cost for a single security', () => {
@@ -16,7 +16,7 @@ describe('substractSecurityExitCost', () => {
         allocation: 100,
       },
     ];
-    expect(substractSecurityExitCost(1000, securities)).toBe(999);
+    expect(subtractSecurityExitCost(1000, securities)).toBe(999);
   });
 
   it('should substract exit cost for multiple securities', () => {
@@ -45,7 +45,7 @@ describe('substractSecurityExitCost', () => {
       },
     ];
 
-    expect(substractSecurityExitCost(1000, securities)).toBe(998.86);
+    expect(subtractSecurityExitCost(1000, securities)).toBe(998.86);
   });
 });
 

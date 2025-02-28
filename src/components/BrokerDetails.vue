@@ -53,11 +53,11 @@ import {
 import SecurityList from './SecurityList.vue';
 import { useId } from '../composables/use-id';
 import { useState } from '../composables/use-store';
-import { substractWealthTax } from '../composables/use-wealth-tax';
-import { substractServiceFee } from '../composables/use-service-fee';
+import { subtractWealthTax } from '../composables/use-wealth-tax';
+import { subtractServiceFee } from '../composables/use-service-fee';
 import {
   addSecurityValues,
-  substractSecurityExitCost,
+  subtractSecurityExitCost,
 } from '../composables/use-securities';
 import type { Security } from '../types';
 type EmitOption =
@@ -154,7 +154,7 @@ export default defineComponent({
         }
 
         if (hasServiceFee.value) {
-          currentAccumulation = substractServiceFee(
+          currentAccumulation = subtractServiceFee(
             currentAccumulation,
             internalServiceFee.value
           );
@@ -166,7 +166,7 @@ export default defineComponent({
         );
 
         if (state.includeWealthTax) {
-          currentAccumulation = substractWealthTax(
+          currentAccumulation = subtractWealthTax(
             currentAccumulation,
             state.fiscalStatus
           );
@@ -178,7 +178,7 @@ export default defineComponent({
       }, [] as number[]);
 
       const lastItem = accumulation[accumulation.length - 1];
-      const exitValue = substractSecurityExitCost(
+      const exitValue = subtractSecurityExitCost(
         lastItem,
         internalSecurities.value
       );
