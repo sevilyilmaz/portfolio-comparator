@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "8.46.4",
-    "@vitejs/plugin-vue": "6.0.1",
+    "@vitejs/plugin-vue": "6.0.2",
     "@vue/test-utils": "2.4.0",
     "@vue/tsconfig": "0.7.0",
     "eslint": "9.39.1",
