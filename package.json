@@ -10,7 +10,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "8.50.0",
+    "@typescript-eslint/parser": "8.50.1",
     "@vitejs/plugin-vue": "6.0.3",
     "@vue/test-utils": "2.4.0",
     "@vue/tsconfig": "0.7.0",
