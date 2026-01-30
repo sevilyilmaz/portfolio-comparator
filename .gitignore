@@ -5,3 +5,7 @@ dist-ssr
 *.local
 Todo.md
 *.log
+
+# pnpm
+pnpm-lock.yaml
+.pnpm-debug.log*
