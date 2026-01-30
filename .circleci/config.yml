@@ -6,21 +6,21 @@ executors:
 aliases:
   restore_cache: &restore_cache
     restore_cache:
-      name: Restore Yarn Package Cache
+      name: Restore pnpm Package Cache
       keys:
-        - yarn-packages-{{ checksum "yarn.lock" }}
+        - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
 
   install_node_modules: &install_node_modules
     run:
       name: Install Dependencies
-      command: yarn install --immutable
+      command: corepack enable pnpm && pnpm install --frozen-lockfile
 
   save_cache: &save_cache
     save_cache:
-      name: Save Yarn Package Cache
-      key: yarn-packages-{{ checksum "yarn.lock" }}
+      name: Save pnpm Package Cache
+      key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       paths:
-        - ~/.cache/yarn
+        - ~/.pnpm-store
 
 version: 2.1
 
@@ -34,7 +34,7 @@ jobs:
       - <<: *save_cache
       - run:
           name: Run Tests
-          command: yarn test
+          command: pnpm test
 
   build:
     executor: node
@@ -44,7 +44,7 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Build
-          command: yarn build
+          command: pnpm build
       - persist_to_workspace:
           root: ./
           paths:
@@ -60,10 +60,10 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Install netlify-cli
-          command: yarn add -D netlify-cli
+          command: pnpm add -D netlify-cli
       - run:
           name: Deploy to Netlify
-          command: $(yarn bin)/netlify deploy --dir=./dist -p
+          command: pnpm exec netlify deploy --dir=./dist -p
 
 workflows:
   version: 2
