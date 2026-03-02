@@ -45,7 +45,7 @@
               class="form-check-input"
             />
             <label class="form-check-label" for="include-wealth-tax">
-              Include wealth tax
+              Include wealth tax (2026)
             </label>
           </div>
 
