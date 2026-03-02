@@ -1,7 +1,7 @@
 // https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/nieuwe-berekening-box-3-inkomen
 const wealthTax = 36 / 100;
-const taxFreeWealth = 57000;
-const fictitiusReturnPercentage = 6.04 / 100;
+const taxFreeWealth = 59357;
+const fictitiusReturnPercentage = 6.00 / 100;
 
 export function getWealthTax(amount: number): number {
   if (amount <= taxFreeWealth) return 0;
