@@ -13,24 +13,20 @@
   "devDependencies": {
     "@typescript-eslint/parser": "8.57.2",
     "@vitejs/plugin-vue": "6.0.5",
-    "@vue/test-utils": "2.4.0",
+    "@vue/test-utils": "2.4.6",
     "@vue/tsconfig": "0.9.1",
-    "eslint": "9.39.2",
+    "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-vue": "9.33.0",
+    "eslint-plugin-vue": "10.8.0",
     "jsdom": "29.0.1",
     "typescript": "5.9.3",
-    "vite": "7.3.1",
+    "vite": "8.0.3",
     "vitest": "4.1.2",
     "vue": "3.5.31",
+    "vue-eslint-parser": "10.4.0",
     "vue-tsc": "3.2.6"
   },
   "prettier": {
     "singleQuote": true
-  },
-  "pnpm": {
-    "overrides": {
-      "minimatch": ">=10.2.1"
-    }
   }
 }
